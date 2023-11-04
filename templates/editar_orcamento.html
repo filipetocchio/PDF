@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Orçamento</title>
+    <!-- Adicione aqui o resto do seu cabeçalho, como links CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Editar Orçamento</h1>
+        <form id="editOrcamentoForm">
+            <!-- Número do Orçamento -->
+            <div class="form-group">
+                <label for="numeroorcamento">Número do Orçamento</label>
+                <input type="text" class="form-control" id="numeroorcamento" name="numeroorcamento" value="{{ orcamento.numeroorcamento }}" required>
+            </div>
+
+            <!-- Quantidade de Produtos -->
+            <div class="form-group">
+                <label for="quantidadeprodutos">Quantidade de Produtos</label>
+                <input type="number" class="form-control" id="quantidadeprodutos" name="quantidadeprodutos" value="{{ orcamento.quantidadeprodutos }}" required>
+            </div>
+
+            <!-- Quantidade -->
+            <div class="form-group">
+                <label for="quantidade">Quantidade</label>
+                <input type="number" class="form-control" id="quantidade" name="quantidade" value="{{ orcamento.quantidade }}" required>
+            </div>
+
+            <!-- Valor Unitário -->
+            <div class="form-group">
+                <label for="valorunitario">Valor Unitário</label>
+                <input type="text" class="form-control" id="valorunitario" name="valorunitario" value="{{ orcamento.valorunitario }}" required>
+            </div>
+
+            <!-- Preço Total -->
+            <div class="form-group">
+                <label for="precototal">Preço Total</label>
+                <input type="text" class="form-control" id="precototal" name="precototal" value="{{ orcamento.precototal }}" required>
+            </div>
+
+            <!-- Data do Orçamento -->
+            <div class="form-group">
+                <label for="dataorcamento">Data do Orçamento</label>
+                <input type="date" class="form-control" id="dataorcamento" name="dataorcamento" value="{{ orcamento.dataorcamento }}" required>
+            </div>
+
+            <!-- Nome da Empresa -->
+            <div class="form-group">
+                <label for="nomeempresa">Nome da Empresa</label>
+                <input type="text" class="form-control" id="nomeempresa" name="nomeempresa" value="{{ orcamento.nomeempresa }}" required>
+            </div>
+
+            <!-- CNPJ -->
+            <div class="form-group">
+                <label for="cnpj">CNPJ</label>
+                <input type="text" class="form-control" id="cnpj" name="cnpj" value="{{ orcamento.cnpj }}" required>
+            </div>
+
+            <!-- Telefone -->
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" value="{{ orcamento.telefone }}" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ orcamento.email }}" required>
+            </div>
+
+            <!-- Endereço -->
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <textarea class="form-control" id="endereco" name="endereco" required>{{ orcamento.endereco }}</textarea>
+            </div>
+
+            <!-- Informações Adicionais -->
+            <div class="form-group">
+                <label for="informacoesadicionais">Informações Adicionais</label>
+                <textarea class="form-control" id="informacoesadicionais" name="informacoesadicionais" required>{{ orcamento.informacoesadicionais }}</textarea>
+            </div>
+
+            <!-- Dados do Cliente -->
+            <div class="form-group">
+                <label for="dadoscliente">Dados do Cliente</label>
+                <textarea class="form-control" id="dadoscliente" name="dadoscliente" required>{{ orcamento.dadoscliente }}</textarea>
+            </div>
+
+            <!-- Tipo de Frete -->
+            <div class="form-group">
+                <label for="tipofrete">Tipo de Frete</label>
+                <input type="text" class="form-control" id="tipofrete" name="tipofrete" value="{{ orcamento.tipofrete }}" required>
+            </div>
+
+            <!-- Forma de Pagamento -->
+            <div class="form-group">
+                <label for="formapagamento">Forma de Pagamento</label>
+                <input type="text" class="form-control" id="formapagamento" name="formapagamento" value="{{ orcamento.formapagamento }}" required>
+            </div>
+
+            <!-- Quantidade de Parcelas -->
+            <div class="form-group">
+                <label for="quantidadeparcelas">Quantidade de Parcelas</label>
+                <input type="number" class="form-control" id="quantidadeparcelas" name="quantidadeparcelas" value="{{ orcamento.quantidadeparcelas }}" required>
+            </div>
+
+            <!-- Nome do Vendedor -->
+            <div class="form-group">
+                <label for="nomevendedor">Nome do Vendedor</label>
+                <input type="text" class="form-control" id="nomevendedor" name="nomevendedor" value="{{ orcamento.nomevendedor }}" required>
+            </div>
+
+            <!-- Prazo de Entrega -->
+            <div class="form-group">
+                <label for="prazoentrega">Prazo de Entrega</label>
+                <input type="number" class="form-control" id="prazoentrega" name="prazoentrega" value="{{ orcamento.prazoentrega }}" required>
+            </div>
+
+            <!-- Botão para submeter o formulário -->
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+    </div>
+
+    <!-- Adicione aqui o resto do seu rodapé, como scripts JS -->
+    <script src="{{ url_for('static', filename='editar_orcamento.js') }}"></script>
+</body>
+</html>

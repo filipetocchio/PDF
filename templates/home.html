@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LuminarBR2</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+  
+  
+</head>
+<body>
+  <div id="sideMenu">
+    <ul>
+      <li><a href="#">Ver Histórico de PDFs Gerados</a></li>
+      <li><a href="#">Ver Minha Conta</a></li>
+    </ul>
+  </div>
+
+  <div id="content">
+    <form id="pdfForm" method="POST" action="/gerar_orcamento" enctype="multipart/form-data">
+      <div class="center">
+        <img src="https://luminarbrasil.com.br/wp-content/uploads/2023/06/WhatsApp-Image-2023-03-16-at-22.26.51-1.jpg" alt="Imagem" style="width: 20%;" />
+        <h1>Preencha os dados para gerar um Orçamento</h1>
+      </div>
+
+      <label for="numero_orcamento">Número do Orçamento:</label>
+      <input type="text" id="numero_orcamento" name="numero_orcamento"><br><br>
+
+      <label for="data_orcamento">Data do Orçamento:</label>
+      <input type="text" id="data_orcamento" name="data_orcamento"><br><br>
+
+      <label for="quantidade_produtos">Quantidade de Produtos:</label>
+      <input type="number" id="quantidade_produtos" name="quantidade_produtos" min="1"><br><br>
+
+      <div id="produtosContainer"></div><br>
+
+      <label for="nome_empresa">Nome da Empresa:</label>
+      <input type="text" id="nome_empresa" name="nome_empresa"><br><br>
+
+      <label for="cnpj">CNPJ:</label>
+      <input type="text" id="cnpj" name="cnpj"><br><br>
+
+      <label for="telefone">Telefone:</label>
+      <input type="text" id="telefone" name="telefone"><br><br>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email"><br><br>
+
+      <label for="nome_cliente">Informações Adicionais:</label>
+      <input type="text" id="nome_cliente" name="nome_cliente"><br><br>
+
+      <label for="frete">Frete:</label>
+      <input type="text" id="frete" name="frete"><br><br>
+
+      <label for="prazo_entrega">Prazo de Entrega:</label>
+      <input type="text" id="prazo_entrega" name="prazo_entrega"><br><br>
+
+      <label for="forma_pagamento">Forma de Pagamento (1 - À vista / 2 - Parcelado):</label>
+      <input type="number" id="forma_pagamento" name="forma_pagamento" min="1" max="2"><br><br>
+
+      <div id="pagamentoContainer"></div><br>
+
+      <button type="submit">Gerar Orçamento</button>
+    </form>
+  </div>
+
+  <div id="footer">
+    <!-- Conteúdo do rodapé aqui... -->
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("#quantidade_produtos").on("input", function() {
+        var quantidadeProdutos = parseInt($(this).val());
+        var produtosContainer = $("#produtosContainer");
+        produtosContainer.empty();
+
+        for (var i = 0; i < quantidadeProdutos; i++) {
+          var produtoIndex = i + 1;
+          var produtoHtml =
+            '<label for="quantidade_produto_' + produtoIndex + '">Quantidade do Produto ' + produtoIndex + ':</label>' +
+            '<input type="number" id="quantidade_produto_' + produtoIndex + '" name="produtos[' + i + '][quantidade]" min="1"><br><br>' +
+            '<label for="nome_produto_' + produtoIndex + '">Nome do Produto ' + produtoIndex + ':</label>' +
+            '<input type="text" id="nome_produto_' + produtoIndex + '" name="produtos[' + i + '][nome_produto]"><br><br>' +
+            '<label for="preco_produto_' + produtoIndex + '">Preço do Produto ' + produtoIndex + ':</label>' +
+            '<input type="text" id="preco_produto_' + produtoIndex + '" name="produtos[' + i + '][preco_produto]"><br><br>' +
+            '<label for="imagem_produto_' + produtoIndex + '">Imagem do Produto ' + produtoIndex + ':</label>' +
+            '<input type="file" id="imagem_produto_' + produtoIndex + '" name="produtos[' + i + '][imagem]" accept="image/*"><br><br>';
+
+          produtosContainer.append(produtoHtml);
+        }
+      });
+
+      $("#forma_pagamento").on("input", function() {
+        var formaPagamento = parseInt($(this).val());
+        var pagamentoContainer = $("#pagamentoContainer");
+        pagamentoContainer.empty();
+
+        if (formaPagamento === 1) {
+          var entradaHtml =
+            '<label for="entrada">Valor da Entrada:</label>' +
+            '<input type="text" id="entrada" name="entrada"><br><br>';
+          
+          pagamentoContainer.append(entradaHtml);
+        } else if (formaPagamento === 2) {
+          var numParcelasHtml =
+            '<label for="num_parcelas">Número de Parcelas:</label>' +
+            '<input type="number" id="num_parcelas" name="num_parcelas" min="1"><br><br>';
+
+          var valorParcelaHtml =
+            '<label for="valor_parcela">Valor de Cada Parcela:</label>' +
+            '<input type="text" id="valor_parcela" name="valor_parcela"><br><br>';
+
+          pagamentoContainer.append(numParcelasHtml);
+          pagamentoContainer.append(valorParcelaHtml);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
